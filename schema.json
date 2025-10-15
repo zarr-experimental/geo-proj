@@ -4,9 +4,9 @@
   "description": "Schema for Template Zarr convention metadata with fixed UUID and exact values",
   "type": "object",
   "properties": {
-    "f010a634-3525-416e-9320-8f44b5bc352c": {
+    "f17cb550-5864-4468-aeb7-f3180cfb622f": {
       "type": "object",
-      "description": "Template convention metadata",
+      "description": "geo:proj metadata object",
       "properties": {
         "version": {
           "type": "string",
@@ -15,12 +15,12 @@
         },
         "schema": {
           "type": "string",
-          "const": "https://raw.githubusercontent.com/zarr-conventions/template/refs/tags/v0.1.0/schema.json",
+          "const": "https://raw.githubusercontent.com/zarr-experimental/geo-proj/refs/tags/v0.1.0/schema.json",
           "description": "URL to the JSON Schema definition for this convention"
         },
         "name": {
           "type": "string",
-          "const": "Template",
+          "const": "geo:proj",
           "description": "Human-readable name of the convention"
         },
         "description": {
@@ -30,46 +30,89 @@
         },
         "spec": {
           "type": "string",
-          "const": "https://github.com/zarr-conventions/template/blob/v0.1.0/README.md",
+          "const": "https://github.com/zarr-experimental/geo-proj/blob/v0.1.0/README.md",
           "description": "URL to the full specification document"
         },
         "configuration": {
           "type": "object",
           "description": "Convention-specific configuration parameters",
           "properties": {
-            "new_field": {
-              "type": "string",
-              "description": "REQUIRED. Describe the required field..."
+            "code": {
+              "type": ["string", "null"],
+              "description": "Authority:code identifier (e.g., EPSG:4326)",
+              "pattern": "^[A-Z]+:[0-9]+$"
             },
-            "xyz": {
-              "type": "object",
-              "description": "XYZ Object containing x, y, z coordinates",
-              "properties": {
-                "x": {
-                  "type": "number",
-                  "description": "REQUIRED. X coordinate value"
+            "wkt2": {
+              "type": ["string", "null"],
+              "description": "WKT2 (ISO 19162) CRS representation"
+            },
+            "projjson": {
+              "oneOf": [
+                {
+                  "$ref": "https://proj.org/schemas/v0.7/projjson.schema.json"
                 },
-                "y": {
-                  "type": "number",
-                  "description": "REQUIRED. Y coordinate value"
-                },
-                "z": {
-                  "type": "number",
-                  "description": "REQUIRED. Z coordinate value"
+                {
+                  "type": "null"
                 }
-              },
-              "required": ["x", "y", "z"],
-              "additionalProperties": false
+              ],
+              "description": "PROJJSON CRS representation"
             },
-            "another_one": {
-              "type": "array",
-              "description": "Array of numeric values",
+            "bbox": {
+              "type": ["array", "null"],
+              "oneOf": [
+                {
+                  "minItems": 4,
+                  "maxItems": 4
+                },
+                {
+                  "minItems": 6,
+                  "maxItems": 6
+                }
+              ],
               "items": {
                 "type": "number"
-              }
+              },
+              "description": "Bounding box in CRS coordinates"
+            },
+            "transform": {
+              "type": ["array", "null"],
+              "oneOf": [
+                {
+                  "minItems": 6,
+                  "maxItems": 6
+                },
+                {
+                  "minItems": 9,
+                  "maxItems": 9
+                }
+              ],
+              "items": {
+                "type": "number"
+              },
+              "description": "Affine transformation coefficients"
+            },
+            "spatial_dimensions": {
+              "type": ["array"],
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "string"
+              },
+              "description": "Names of spatial dimensions [y_name, x_name]"
             }
           },
-          "required": ["new_field"],
+          "oneOf": [
+            {
+              "required": ["code"]
+            },
+            {
+              "required": ["wkt2"]
+            },
+            {
+              "required": ["projjson"]
+            }
+          ],
+          "required": ["spatial_dimensions"],
           "additionalProperties": false
         }
       },
@@ -77,6 +120,6 @@
       "additionalProperties": false
     }
   },
-  "required": ["f010a634-3525-416e-9320-8f44b5bc352c"],
+  "required": ["f17cb550-5864-4468-aeb7-f3180cfb622f"],
   "additionalProperties": true
 }

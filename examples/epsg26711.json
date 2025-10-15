@@ -1,0 +1,24 @@
+{
+    "f17cb550-5864-4468-aeb7-f3180cfb622f": {
+        "version": "0.1.0",
+        "schema": "https://raw.githubusercontent.com/zarr-experimental/geo-proj/refs/tags/v0.1.0/schema.json",
+        "name": "geo:proj",
+        "description": "Template convention for demonstrating Zarr convention metadata structure",
+        "spec": "https://github.com/zarr-experimental/geo-proj/blob/v0.1.0/README.md",
+        "configuration": {
+            "code": "EPSG:26711",
+            "spatial_dimensions": [
+                "Y",
+                "X"
+            ],
+            "transform": [
+                60,
+                0,
+                440720,
+                0,
+                60,
+                3750120
+            ]
+        }
+    }
+}
