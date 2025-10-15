@@ -26,31 +26,17 @@ This specification defines a JSON object that encodes datum and coordinate refer
 The configuration in the Zarr convention metadata can be used in these parts of the Zarr hierarchy:
 
 - [x] Group
-- [ ] Array
+- [x] Array
 
 |   |Type|Description|Required|Reference|
 |---|---|---|---|---|
-|**version**|`string`|Projection metadata version| &#10003; Yes|[geo -> version](#geo---projversion)|
-|**code**|`["string", "null"]`|Authority:code identifier (e.g., EPSG:4326)|No|[geo -> code](#geo---projcode)|
-|**wkt2**|`["string", "null"]`|WKT2 (ISO 19162) CRS representation|No|[geo -> wkt2](#geo---projwkt2)|
-|**projjson**|`any`|PROJJSON CRS representation|No|[geo -> projjson](#geo---projprojjson)|
-|**bbox**|`number` `[]`|Bounding box in CRS coordinates|No|[geo -> bbox](#geo---projbbox)|
-|**transform**|`number` `[]`|Affine transformation coefficients|No|[geo -> transform](#geo---projtransform)|
-|**spatial_dimensions**|`string` `[2]`|Names of spatial dimensions [y_name, x_name]|No|[geo -> spatial_dimensions](#geo---projspatial_dimensions)|
+|**code**|`["string", "null"]`|Authority:code identifier (e.g., EPSG:4326)|No|[code](#code)|
+|**wkt2**|`["string", "null"]`|WKT2 (ISO 19162) CRS representation|No|[geo -> wkt2](#wkt2)|
+|**projjson**|`any`|PROJJSON CRS representation|No|[geo -> projjson](#projjson)|
+|**bbox**|`number` `[]`|Bounding box in CRS coordinates|No|[geo -> bbox](#bbox)|
+|**transform**|`number` `[]`|Affine transformation coefficients|No|[geo -> transform](#transform)|
+|**spatial_dimensions**|`string` `[2]`|Names of spatial dimensions [y_name, x_name]|&#10003; Yes|[geo -> spatial_dimensions](#spatial_dimensions)|
 
-### Additional Field Information
-
-**`geo -> proj` Properties**
-
-|   |Type|Description|Required|Reference|
-|---|---|---|---|---|
-|**version**|`string`|Projection metadata version| &#10003; Yes|[geo -> version](#geo---projversion)|
-|**code**|`["string", "null"]`|Authority:code identifier (e.g., EPSG:4326)|No|[geo -> code](#geo---projcode)|
-|**wkt2**|`["string", "null"]`|WKT2 (ISO 19162) CRS representation|No|[geo -> wkt2](#geo---projwkt2)|
-|**projjson**|`any`|PROJJSON CRS representation|No|[geo -> projjson](#geo---projprojjson)|
-|**bbox**|`number` `[]`|Bounding box in CRS coordinates|No|[geo -> bbox](#geo---projbbox)|
-|**transform**|`number` `[]`|Affine transformation coefficients|No|[geo -> transform](#geo---projtransform)|
-|**spatial_dimensions**|`string` `[2]`|Names of spatial dimensions [y_name, x_name]|No|[geo -> spatial_dimensions](#geo---projspatial_dimensions)|
 
 ### Field Details
 
