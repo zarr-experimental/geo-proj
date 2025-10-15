@@ -16,6 +16,14 @@ const data = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
 
 // Validate
 const ajv = new Ajv({ allErrors: true });
+
+// Pre-load external schema
+const externalSchemaUrl = "https://proj.org/schemas/v0.7/projjson.schema.json";
+const externalSchema = await fetch(externalSchemaUrl).then(r => r.json());
+
+// Add it to ajv
+ajv.addSchema(externalSchema, externalSchemaUrl);
+
 const validate = ajv.compile(schema);
 const valid = validate(data);
 
