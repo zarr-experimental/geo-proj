@@ -164,20 +164,9 @@ See the [Spatial Dimension Identification](#spatial-dimension-identification) se
 
 Note: The shape of spatial dimensions is obtained directly from the Zarr array metadata once the spatial dimensions are identified.
 
-### Spatial Dimension Identification
-
-In this extension, "spatial dimensions" refers to the dimension names of 2D/3D arrays within this group to which the projection definition applies. This extension is designed for regular grids where dimensions directly correspond to spatial axes.
-
-The extension identifies these array dimensions through:
-
-1. **Explicit Declaration** (recommended): Use `spatial_dimensions` to specify dimension names
-2. **Pattern-Based Detection** (fallback): Automatically detect spatial dimensions using patterns defined by this extension
-
-
-
 ## Acknowledgements
 
 The template is based on the [STAC extensions template](https://github.com/stac-extensions/template/blob/main/README.md).
 
 The convention was copied and modified from  
-[https://github.com/zarr-developers/zarr-extensions/pull/21] and [https://github.com/EOPF-Explorer/data-model/blob/main/attributes/geo/proj/](https://github.com/EOPF-Explorer/data-model/blob/main/attributes/geo/proj/).
+https://github.com/zarr-developers/zarr-extensions/pull/21 and [https://github.com/EOPF-Explorer/data-model/blob/main/attributes/geo/proj/](https://github.com/EOPF-Explorer/data-model/blob/main/attributes/geo/proj/).
