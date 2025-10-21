@@ -21,6 +21,16 @@ This specification defines a JSON object that encodes datum and coordinate refer
 - Compatible with existing geospatial tools (GDAL, rasterio, pyproj)
 - Based on the proven STAC Projection Extension model
 
+## Inheritance Model
+
+The `geo:proj` convention object follows a simple group-to-array inheritance model that should be understood first:
+
+### Inheritance Rules
+
+1. **Group-level definition** (recommended): When `geo:proj` convention is defined at the group level, it applies to all arrays that are direct children of that group. It does not apply to groups or arrays deeper in the hierarchy (e.g., grandchildren).
+2. **Array-level override**: An array can completely override the group's `geo:proj` convention with its own definition.
+3. **Partial replacement**: Partial inheritance (overriding only some fields while inheriting others) is allowed.
+
 ## Configuration
 
 The configuration in the Zarr convention metadata can be used in these parts of the Zarr hierarchy:
